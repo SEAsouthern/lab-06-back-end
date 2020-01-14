@@ -28,9 +28,9 @@ Number and name of feature: Repository Setup
 
 Estimate of time needed to complete: 1h
 
-Start time: 9:30
+Start time: 9:30am
 
-Finish time: 10:30
+Finish time: 10:30am
 
 Actual time needed to complete: 1h
 
@@ -39,7 +39,18 @@ Number and name of feature: Heroku Deployment
 
 Estimate of time needed to complete: 1h
 
-Start time: 10:30
+Start time: 10:30am
+
+Finish time: 11am
+
+Actual time needed to complete: 30m
+
+
+Number and name of feature: Feature Tasks
+
+Estimate of time needed to complete: 2h
+
+Start time: 11am
 
 Finish time: 
 
