@@ -52,6 +52,6 @@ Estimate of time needed to complete: 2h
 
 Start time: 11am
 
-Finish time: 
+Finish time: incomplete as of 1:40pm 14 Jan 20
 
-Actual time needed to complete: 
+Actual time needed to complete: unknown

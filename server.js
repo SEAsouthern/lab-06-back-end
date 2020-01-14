@@ -34,13 +34,14 @@ function mapObject (city, geoDataResults) {
   this.longitude = geoDataResults.lon;
 }
 
-// Below is what front end is expecting.
-// {
-//   "search_query": "seattle",
-//   "formatted_query": "Seattle, WA, USA",
-//   "latitude": "47.606210",
-//   "longitude": "-122.332071"
-// }
+app.get('/weather', (request, response) => {
+  const weatherData = require('./data/darksky.json');
+  console.log(weatherData.daily.data[1].summary);
+  console.log(weatherData.daily.data[1].time);
+
+});
+
+// something.data[1].summary
 
 // app.use(express.static('./public'));
 
