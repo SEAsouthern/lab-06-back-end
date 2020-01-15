@@ -45,10 +45,7 @@ function mapObject (city, geoDataResults) {
 app.get('/weather', (request, response) => {
   try {
     const weatherData = require('./data/darksky.json');
-    const weatherSummaries = [];
-    weatherData.daily.data.forEach(day => {
-      weatherSummaries.push (new Weather(day));
-    });
+    const weatherSummaries = weatherData.daily.data.map(day => (new Weather(day)));
     // console.log(weatherData.daily.data[1].summary);
     // console.log(weatherData.daily.data[1].time);
     response.status(200).json(weatherSummaries);

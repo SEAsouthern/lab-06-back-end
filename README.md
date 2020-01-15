@@ -22,9 +22,10 @@ Lab 06
 
 ## Credits and Collaborations
 Vij Rangarajan
+Tyler Sayvetz
  -->
 
-Number and name of feature: Repository Setup
+Number and name of feature: Lab 06 #1 Repository Setup
 
 Estimate of time needed to complete: 1h
 
@@ -35,7 +36,7 @@ Finish time: 10:30am
 Actual time needed to complete: 1h
 
 
-Number and name of feature: Heroku Deployment
+Number and name of feature: Lab 06 #2 Heroku Deployment
 
 Estimate of time needed to complete: 1h
 
@@ -46,12 +47,23 @@ Finish time: 11am
 Actual time needed to complete: 30m
 
 
-Number and name of feature: Feature Tasks
+Number and name of feature: Lab 06 #3 Feature Tasks
 
 Estimate of time needed to complete: 2h
 
-Start time: 11am
+Start time: 11am 14 Jan 2020
 
-Finish time: incomplete as of 1:40pm 14 Jan 20
+Finish time: 11am 15 Jan 2020
 
-Actual time needed to complete: unknown
+Actual time needed to complete: 4h
+
+
+Number and name of feature: Lab 07 #1 Data Formatting
+
+Estimate of time needed to complete: 1h
+
+Start time: 11:15am
+
+Finish time: 
+
+Actual time needed to complete:
