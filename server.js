@@ -12,20 +12,28 @@ app.use(cors());
 
 let dataArray = [];
 
-app.get('/location', (request, response) => {
+app.get('/location', checkCity, (request, response) => {
 //  first question: how is the front end sending data?
 // console.log(request.query.city);
 // now put into a variable
-let city = request.query.city;
-const geoData = require('./data/geo.json');
-// send back formatted data object
-let getDataResults = geoData[0];
+try {
+  let city = request.query.city;
+  const geoData = require('./data/geo.json');
+  // send back formatted data object
+  let getLocationDataResults = geoData[0];
 
-let location = new mapObject(city, getDataResults);
+  let location = new mapObject(city, getLocationDataResults);
 
-response.status(200).send(location);
-
+  response.status(200).send(location);
+}
+catch (error) {
+  errorHander(('So sorry, something went wrong.', request, response));
+}
 });
+
+const checkCity = (request, response, next) => {
+  next();
+}
 
 function mapObject (city, geoDataResults) {
   this.search_query = city;
@@ -41,8 +49,8 @@ app.get('/weather', (request, response) => {
     weatherData.daily.data.forEach(day => {
       weatherSummaries.push (new Weather(day));
     });
-    console.log(weatherData.daily.data[1].summary);
-    console.log(weatherData.daily.data[1].time);
+    // console.log(weatherData.daily.data[1].summary);
+    // console.log(weatherData.daily.data[1].time);
     response.status(200).json(weatherSummaries);
   }
   catch (error) {
@@ -57,6 +65,10 @@ function Weather(day) {
 
 function notFoundHandler(request, response) {
   response.status(404).send('huh?');
+}
+
+function errorHandler(error, request, response) {
+  response.status(500).send(error)
 }
 
 app.get('*',(request, response) => {response.status(404).send('this route does not exist')});
