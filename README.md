@@ -86,6 +86,6 @@ Estimate of time needed to complete: 30m
 
 Start time: 12:55pm
 
-Finish time: 12:35am
+Finish time: incomplete
 
-Actual time needed to complete: 50m
+Actual time needed to complete: unknown
