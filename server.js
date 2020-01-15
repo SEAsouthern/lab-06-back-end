@@ -12,7 +12,7 @@ app.use(cors());
 
 let dataArray = [];
 
-app.get('/location', checkCity, (request, response) => {
+app.get('/location', (request, response) => {
 //  first question: how is the front end sending data?
 // console.log(request.query.city);
 // now put into a variable
