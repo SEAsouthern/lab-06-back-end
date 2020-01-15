@@ -64,6 +64,28 @@ Estimate of time needed to complete: 1h
 
 Start time: 11:15am
 
-Finish time: 
+Finish time: 11:40am
 
-Actual time needed to complete:
+Actual time needed to complete: 25m
+
+
+Number and name of feature: Lab 07 #2 Locations
+
+Estimate of time needed to complete: 1h
+
+Start time: 11:45am
+
+Finish time: 12:35pm
+
+Actual time needed to complete: 50m
+
+
+Number and name of feature: Lab 07 #3 Weather
+
+Estimate of time needed to complete: 30m
+
+Start time: 12:55pm
+
+Finish time: 12:35am
+
+Actual time needed to complete: 50m

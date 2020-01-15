@@ -8,23 +8,33 @@ const PORT = process.env.PORT || 3001;
 const cors = require('cors');
 app.use(cors());
 
+const superagent = require('superagent');
+// app.use(superagent());
+
 // route
 
 let dataArray = [];
+
+// GET https://us1.locationiq.com/v1/search.php?key=YOUR_PRIVATE_TOKEN&q=SEARCH_STRING&format=json
 
 app.get('/location', (request, response) => {
 //  first question: how is the front end sending data?
 // console.log(request.query.city);
 // now put into a variable
 try {
-  let city = request.query.city;
-  const geoData = require('./data/geo.json');
+  let reqCity = request.query.city;
+  superagent.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.LOCATION_IQ_API}&q=${reqCity}&format=json`)
+    .then((results) => {
+      // console.log(results.body);
+      const responseObj = new mapObject(reqCity, results.body);
+      // response.status(200).json(responseObj);
+      response.send(responseObj);
+    });
+  // const geoData = require('./data/geo.json');
   // send back formatted data object
-  let getLocationDataResults = geoData[0];
+  // let getLocationDataResults = geoData[0];
 
-  let location = new mapObject(city, getLocationDataResults);
-
-  response.status(200).send(location);
+  // let location = new mapObject(city, getLocationDataResults);
 }
 catch (error) {
   errorHander(('So sorry, something went wrong.', request, response));
@@ -37,9 +47,9 @@ const checkCity = (request, response, next) => {
 
 function mapObject (city, geoDataResults) {
   this.search_query = city;
-  this.formatted_query = geoDataResults.display_name;
-  this.latitude = geoDataResults.lat;
-  this.longitude = geoDataResults.lon;
+  this.formatted_query = geoDataResults[0].display_name;
+  this.latitude = geoDataResults[0].lat;
+  this.longitude = geoDataResults[0].lon;
 }
 
 app.get('/weather', (request, response) => {
