@@ -35,27 +35,29 @@ function mapObject (city, geoDataResults) {
 }
 
 app.get('/weather', (request, response) => {
-  const weatherData = require('./data/darksky.json');
-  console.log(weatherData.daily.data[1].summary);
-  console.log(weatherData.daily.data[1].time);
+  try {
+    const weatherData = require('./data/darksky.json');
+    const weatherSummaries = [];
+    weatherData.daily.data.forEach(day => {
+      weatherSummaries.push (new Weather(day));
+    });
+    console.log(weatherData.daily.data[1].summary);
+    console.log(weatherData.daily.data[1].time);
+    response.status(200).json(weatherSummaries);
+  }
+  catch (error) {
+    errorHandler('So sorry, something went wrong.', request, response)
+  }
+})
 
-});
+function Weather(day) {
+  this.forecast = day.summary;
+  this.time = new Date(day.time * 1000).toString().slice(0, 15);
+}
 
-// something.data[1].summary
-
-// app.use(express.static('./public'));
-
-// app.get('/', (request, response) => {
-//   response.send(('Hell low whirled'))
-// });
-
-// app.get('/hello', (request, response) => {
-//   response.send('Hello from the hello route!')
-// });
-
-// app.get('/allbase', (request, response) => {
-//   response.send('Are belong to us!')
-// });
+function notFoundHandler(request, response) {
+  response.status(404).send('huh?');
+}
 
 app.get('*',(request, response) => {response.status(404).send('this route does not exist')});
 
