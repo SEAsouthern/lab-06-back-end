@@ -17,13 +17,13 @@ let dataArray = [];
 let locations = {};
 
 app.get('/location', locationHandler);
-// app.get('/weather', weatherHandler);
+app.get('/weather', weatherHandler);
 app.use('*', notFoundHandler);
 app.use(errorHandler);
 
 function locationHandler(request, response) {
   let reqCity = request.query.city;
-  const url = `https://us1.locationiq.com/v1/search.php?key=${process.env.LOCATION_IQ_API}&q=${reqCity}&format=json`;
+  const url = `https://us1.locationiq.com/v1/search.php?key=${process.env.LOCATION_IQ_API}&q=${reqCity}&format=json&limit=1`;
 
   if (locations[url]) {
     response.send(locations[url]);
@@ -36,10 +36,10 @@ function locationHandler(request, response) {
       })
     // send back formatted data object
       .catch((error) => {
-      errorHander(('So sorry, something went wrong.', request, response));
-      });
-  };
-};
+        errorHander(('So sorry, something went wrong.', request, response));
+      })
+  }
+}
 
 
 const checkCity = (request, response, next) => {
@@ -53,21 +53,27 @@ function mapObject (city, geoDataResults) {
   this.longitude = geoDataResults[0].lon;
 }
 
-app.get('/weather', (request, response) => {
-  try {
-    let {search_query, latitude, longitude} = request.query;
-    superagent.get(`https://api.darksky.net/forecast/${process.env.DARKSKY_API}/${latitude},${longitude}`)
+let weathers = {};
+
+function weatherHandler (request, response) {
+  let {search_query, latitude, longitude} = request.query;
+  const url = `https://api.darksky.net/forecast/${process.env.DARKSKY_API}/${latitude},${longitude}`;
+  if (weathers[url]) {
+    response.send(weathers[url]);
+  }
+  else {
+    superagent.get(url)
     .then((results) => {
       const weatherSummaries = results.body.daily.data.map(day => {
         return new Weather(day);
       });
       response.status(200).send(weatherSummaries);
-    });
+    })
+    .catch((error) => {
+      errorHandler('So sorry, something went wrong.', request, response)
+    })
   }
-  catch (error) {
-    errorHandler('So sorry, something went wrong.', request, response)
-  }
-})
+}
 
 function Weather(day) {
   this.forecast = day.summary;
