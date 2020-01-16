@@ -23,6 +23,7 @@ Lab 06
 ## Credits and Collaborations
 Vij Rangarajan
 Tyler Sayvetz
+Andrew Kyllo
  -->
 
 Number and name of feature: Lab 06 #1 Repository Setup
