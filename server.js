@@ -9,37 +9,38 @@ const cors = require('cors');
 app.use(cors());
 
 const superagent = require('superagent');
-// app.use(superagent());
 
 // route
 
 let dataArray = [];
 
-// GET https://us1.locationiq.com/v1/search.php?key=YOUR_PRIVATE_TOKEN&q=SEARCH_STRING&format=json
+let locations = {};
 
-app.get('/location', (request, response) => {
-//  first question: how is the front end sending data?
-// console.log(request.query.city);
-// now put into a variable
-try {
+app.get('/location', locationHandler);
+// app.get('/weather', weatherHandler);
+app.use('*', notFoundHandler);
+app.use(errorHandler);
+
+function locationHandler(request, response) {
   let reqCity = request.query.city;
-  superagent.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.LOCATION_IQ_API}&q=${reqCity}&format=json`)
-    .then((results) => {
-      // console.log(results.body);
-      const responseObj = new mapObject(reqCity, results.body);
-      // response.status(200).json(responseObj);
-      response.send(responseObj);
-    });
-  // const geoData = require('./data/geo.json');
-  // send back formatted data object
-  // let getLocationDataResults = geoData[0];
+  const url = `https://us1.locationiq.com/v1/search.php?key=${process.env.LOCATION_IQ_API}&q=${reqCity}&format=json`;
 
-  // let location = new mapObject(city, getLocationDataResults);
-}
-catch (error) {
-  errorHander(('So sorry, something went wrong.', request, response));
-}
-});
+  if (locations[url]) {
+    response.send(locations[url]);
+  }
+  else {
+    superagent.get(url)
+      .then((results) => {
+        const responseObj = new mapObject(reqCity, results.body);
+        response.send(responseObj);
+      })
+    // send back formatted data object
+      .catch((error) => {
+      errorHander(('So sorry, something went wrong.', request, response));
+      });
+  };
+};
+
 
 const checkCity = (request, response, next) => {
   next();
