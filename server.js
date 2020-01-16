@@ -10,10 +10,10 @@ app.use(cors());
 
 const superagent = require('superagent');
 
-const pg = require('pg');
+// const pg = require('pg');
 
-const client = new pg.Client(process.env.DATABASE_URL);
-client.on('error', err => {throw err;});
+// const client = new pg.Client(process.env.DATABASE_URL);
+// client.on('error', err => {throw err;});
 
 // route
 
@@ -27,6 +27,7 @@ let locations = {};
 // app.get('/add', (request, response) => })
 app.get('/location', locationHandler);
 app.get('/weather', weatherHandler);
+app.get('/events', eventfulHandler);
 app.use('*', notFoundHandler);
 app.use(errorHandler);
 
@@ -87,6 +88,31 @@ function weatherHandler (request, response) {
 function Weather(day) {
   this.forecast = day.summary;
   this.time = new Date(day.time * 1000).toString().slice(0, 15);
+}
+
+function eventfulHandler(request, response) {
+  let {search_query} = request.query;
+  let key = process.env.EVENTFUL_API;
+  const url = `http://api.eventful.com/json/events/search?keywords=music&location=${search_query}&app_key=${key}`;
+  
+  superagent.get(url)
+  .then(eventData => {
+    let eventMassData = JSON.parse(eventData.text);
+    let localEvent = eventMassData.events.event.map(thisEventData => {
+      return new Event(thisEventData);
+    })
+    response.status(200).send(localEvent)
+  })
+  .catch((error) => {
+    errorHandler('So sorry, something went wrong.', request, response);
+  })
+}
+
+function Event(thisEventData) {
+  this.name = thisEventData.title;
+  this.event_date = thisEventData.start_time.slice(0, 10);
+  this.link = thisEventData.url;
+  this.summary = thisEventData.description;
 }
 
 function notFoundHandler(request, response) {
