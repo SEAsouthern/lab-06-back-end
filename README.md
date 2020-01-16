@@ -85,8 +85,19 @@ Number and name of feature: Lab 07 #3 Weather
 
 Estimate of time needed to complete: 30m
 
-Start time: 12:55pm
+Start time: 12:55pm 15 Jan 2020
 
-Finish time: incomplete
+Finish time: 11am 16 Jan 2020
 
-Actual time needed to complete: unknown
+Actual time needed to complete: 3h
+
+
+Number and name of feature: Lab 08 #1 Database
+
+Estimate of time needed to complete: 1h
+
+Start time: 11:30pm 16 Jan 2020
+
+Finish time: 
+
+Actual time needed to complete: 
