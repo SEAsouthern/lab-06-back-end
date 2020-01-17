@@ -1,19 +1,18 @@
 'use strict'
 
 const express = require('express');
-const app = express();
 require('dotenv').config();
+const superagent = require('superagent');
+const cors = require('cors');
+const pg = require('pg');
+
+const app = express();
 const PORT = process.env.PORT || 3001;
 
-const cors = require('cors');
+const client = new pg.Client(process.env.DATABASE_URL);
+client.on('error', err => console.error(err));
+
 app.use(cors());
-
-const superagent = require('superagent');
-
-// const pg = require('pg');
-
-// const client = new pg.Client(process.env.DATABASE_URL);
-// client.on('error', err => {throw err;});
 
 // route
 
@@ -21,10 +20,6 @@ let dataArray = [];
 
 let locations = {};
 
-// app.get('/', (request, response) => {
-//   response.status(200).send('ok');
-// });{
-// app.get('/add', (request, response) => })
 app.get('/location', locationHandler);
 app.get('/weather', weatherHandler);
 app.get('/events', eventfulHandler);
