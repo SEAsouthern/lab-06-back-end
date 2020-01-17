@@ -13,18 +13,15 @@ This app will give a user information about cities they want to explore.
 The user will need to go to the website and enter a city name. 
 
 ## Architecture
-<!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
+The program uses JavaScript and a SQL server. 
 
 ## Change Log
-<!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an examples:
-
-01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource.
 
 ## Credits and Collaborations
 Vij Rangarajan
 Tyler Sayvetz
 Andrew Kyllo
- -->
+Blondine Dasilveira
 
 Number and name of feature: Lab 06 #1 Repository Setup
 
@@ -96,8 +93,19 @@ Number and name of feature: Lab 08 #1 Database
 
 Estimate of time needed to complete: 1h
 
-Start time: 11:30pm 16 Jan 2020
+Start time: 11:30am 16 Jan 2020
 
-Finish time: 
+Finish time: 12:30pm 17 Jan 2020
 
-Actual time needed to complete: 
+Actual time needed to complete: 2.5h
+
+
+Number and name of feature: Lab 09 #1 Movies
+
+Estimate of time needed to complete: 1h
+
+Start time: 12:30am 17 Jan 2020
+
+Finish time: 1:30pm 17 Jan 2020
+
+Actual time needed to complete: 1h
