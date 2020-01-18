@@ -17,11 +17,6 @@ The program uses JavaScript and a SQL server.
 
 ## Change Log
 
-## Credits and Collaborations
-Vij Rangarajan
-Tyler Sayvetz
-Andrew Kyllo
-Blondine Dasilveira
 
 Number and name of feature: Lab 06 #1 Repository Setup
 
@@ -109,3 +104,9 @@ Start time: 12:30am 17 Jan 2020
 Finish time: 1:30pm 17 Jan 2020
 
 Actual time needed to complete: 1h
+
+## Credits and Collaborations
+Vij Rangarajan
+Tyler Sayvetz
+Andrew Kyllo
+Blondine Dasilveira
